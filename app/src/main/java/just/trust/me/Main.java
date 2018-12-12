@@ -54,14 +54,14 @@ import static de.robv.android.xposed.XposedHelpers.setObjectField;
 
 public class Main implements IXposedHookLoadPackage {
 
-    private static final String TAG = "JustTrustMe";
+    private static final String APPNAME = "JustTrustMe:";
+    private static String TAG = Main.APPNAME;
     String currentPackageName = "";
 
     public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
 
         currentPackageName = lpparam.packageName;
-
-
+        TAG = new StringBuffer(Main.APPNAME).append(':').append(currentPackageName).toString();
 
         /* Apache Hooks */
         /* external/apache-http/src/org/apache/http/impl/client/DefaultHttpClient.java */
